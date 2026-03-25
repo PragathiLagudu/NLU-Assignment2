@@ -1,39 +1,24 @@
-import numpy as np
+import torch
 
-class Dataset:
-    def __init__(self, corpus_file, window_size=2):
-        with open(corpus_file, 'r') as f:
-            words = f.read().split()
+SOS = "<"
+EOS = ">"
 
-        self.vocab = list(set(words))
-        self.word2idx = {w: i for i, w in enumerate(self.vocab)}
-        self.idx2word = {i: w for w, i in self.word2idx.items()}
+class NameDataset:
+    def __init__(self, file):
+        with open(file) as f:
+            self.names = [line.strip().lower() for line in f if line.strip()]
 
-        self.data = [self.word2idx[w] for w in words]
+        chars = set("".join(self.names))
+        chars.update([SOS, EOS])
 
-        self.window_size = window_size
-        self.vocab_size = len(self.vocab)
+        self.chars = sorted(list(chars))
+        self.stoi = {ch: i for i, ch in enumerate(self.chars)}
+        self.itos = {i: ch for ch, i in self.stoi.items()}
 
-    def generate_cbow(self):
-        X, Y = [], []
+        self.vocab_size = len(self.chars)
 
-        for i in range(self.window_size, len(self.data) - self.window_size):
-            context = []
-            for j in range(-self.window_size, self.window_size + 1):
-                if j != 0:
-                    context.append(self.data[i + j])
+    def encode(self, name):
+        return [self.stoi[SOS]] + [self.stoi[c] for c in name] + [self.stoi[EOS]]
 
-            X.append(context)
-            Y.append(self.data[i])
-
-        return np.array(X), np.array(Y)
-
-    def generate_skipgram(self):
-        pairs = []
-
-        for i in range(self.window_size, len(self.data) - self.window_size):
-            for j in range(-self.window_size, self.window_size + 1):
-                if j != 0:
-                    pairs.append((self.data[i], self.data[i + j]))
-
-        return pairs
+    def decode(self, indices):
+        return "".join([self.itos[i] for i in indices])
