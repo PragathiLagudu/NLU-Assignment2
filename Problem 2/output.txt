@@ -1,0 +1,50 @@
+==================== Vanilla RNN ====================
+Trainable Parameters: 63067
+Epoch 1, Loss: 2485.3954
+Epoch 2, Loss: 2365.1705
+Epoch 3, Loss: 2330.5542
+Epoch 4, Loss: 2306.7638
+Epoch 5, Loss: 2281.0671
+Epoch 6, Loss: 2276.5312
+Epoch 7, Loss: 2262.5437
+Epoch 8, Loss: 2255.5041
+Epoch 9, Loss: 2239.0744
+Epoch 10, Loss: 2237.0244
+Generated 200 names in 200 attempts
+Sample: ['aarita', 'shorut', 'manda', 'sandra', 'maniti', 'shindi', 'karshwam', 'sudar', 'sarina', 'sandika']
+Novelty: 0.915
+Diversity: 0.92
+
+==================== BLSTM ====================
+Trainable Parameters: 206299
+Epoch 1, Loss: 978.4585
+Epoch 2, Loss: 667.1189
+Epoch 3, Loss: 648.5239
+Epoch 4, Loss: 641.0540
+Epoch 5, Loss: 638.2165
+Epoch 6, Loss: 636.6195
+Epoch 7, Loss: 634.9252
+Epoch 8, Loss: 633.8180
+Epoch 9, Loss: 633.7190
+Epoch 10, Loss: 634.2385
+Generated 2 names in 500 attempts
+Sample: ['zo', 'es']
+Novelty: 1.0
+Diversity: 1.0
+
+==================== Attention RNN ====================
+Trainable Parameters: 63067
+Epoch 1, Loss: 2485.8378
+Epoch 2, Loss: 2369.8982
+Epoch 3, Loss: 2328.6223
+Epoch 4, Loss: 2301.1657
+Epoch 5, Loss: 2275.9314
+Epoch 6, Loss: 2265.8735
+Epoch 7, Loss: 2252.0352
+Epoch 8, Loss: 2244.4946
+Epoch 9, Loss: 2234.9238
+Epoch 10, Loss: 2228.3281
+Generated 200 names in 200 attempts
+Sample: ['sidhan', 'aarati', 'sandin', 'manita', 'shavnita', 'anita', 'shovita', 'shandita', 'suhita', 'shruti']      
+Novelty: 0.905
+Diversity: 0.7
