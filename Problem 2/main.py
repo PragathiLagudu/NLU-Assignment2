@@ -1,51 +1,64 @@
-from utils.preprocess import build_corpus
-from utils.dataset import Dataset
-from models.word2vec import Word2Vec
-from analysis.evaluate import nearest_neighbors, analogy
-from analysis.wordcloud import generate_wordcloud
-from analysis.visualize import plot_embeddings
+from utils.dataset import NameDataset
+from utils.train import train
+from utils.evaluate import novelty_rate, diversity
+from models.rnn import VanillaRNN
+from models.blstm import BLSTM
+from models.attention_rnn import AttentionRNN
 
-# STEP 1: Build corpus
-build_corpus("data/raw", "data/clean_corpus.txt")
+# Load dataset
+dataset = NameDataset("TrainingNames.txt")
 
-with open("data/clean_corpus.txt", encoding="utf-8") as f:
-    words = f.read().split()
-num_tokens = len(words)
-vocab_size = len(set(words))
 
-print("\n===== DATASET STATS =====")
-print(f"Total Tokens: {num_tokens}")
-print(f"Vocabulary Size: {vocab_size}")
-print("=========================\n")
+def count_parameters(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
-# STEP 2: Dataset
-dataset = Dataset("data/clean_corpus.txt", window_size=2)
 
-# STEP 3: Train CBOW
-X, Y = dataset.generate_cbow()
+def run_model(model_class, model_name):
+    print(f"\n{'='*20} {model_name} {'='*20}")
 
-model_cbow = Word2Vec(dataset.vocab_size, embed_dim=50)
-model_cbow.train_cbow(X, Y, epochs=3)
+    model = model_class(dataset.vocab_size)
 
-# STEP 4: Train Skipgram
-pairs = dataset.generate_skipgram()
+    print(f"Trainable Parameters: {count_parameters(model)}")
 
-model_sg = Word2Vec(dataset.vocab_size, embed_dim=50)
-model_sg.train_skipgram(pairs, epochs=3)
+    # Train
+    train(model, dataset)
 
-# STEP 5: Neighbors
-words = ["research", "student", "phd", "exam"]
+    #  Different sample size for BLSTM
+    target_samples = 50 if model_name == "BLSTM" else 200
 
-for w in words:
-    print(f"\nNearest for {w}:")
-    print(nearest_neighbors(model_cbow, w, dataset))
+    generated = []
+    attempts = 0
+    max_attempts = 500
 
-# STEP 6: Analogy
-print("\nAnalogy (ug : btech :: pg : ?)")
-print(analogy(model_cbow, dataset, "ug", "btech", "pg"))
+    while len(generated) < target_samples and attempts < max_attempts:
 
-# STEP 7: WordCloud
-generate_wordcloud("data/clean_corpus.txt")
+        if model_name == "BLSTM":
+            name = model.generate(dataset)  
+        else:
+            name = model.generate(dataset)
 
-# STEP 8: Visualization
-plot_embeddings(model_cbow, dataset)
+        attempts += 1
+
+        #  Relax condition slightly for BLSTM
+        if model_name == "BLSTM":
+            if len(name) >= 2:
+                generated.append(name)
+        else:
+            if len(name) >= 3:
+                generated.append(name)
+
+    print(f"Generated {len(generated)} names in {attempts} attempts")
+
+    #  Handle empty case safely
+    if len(generated) == 0:
+        print(" No valid names generated")
+        generated = ["dummy"]
+
+    print("Sample:", generated[:10])
+    print("Novelty:", round(novelty_rate(generated, set(dataset.names)), 3))
+    print("Diversity:", round(diversity(generated), 3))
+
+
+run_model(VanillaRNN, "Vanilla RNN")
+run_model(BLSTM, "BLSTM")
+run_model(AttentionRNN, "Attention RNN")
