@@ -199,10 +199,8 @@ Problem 2/
 │   ├── train.py               # Training loop
 │   └── evaluate.py            # Novelty & diversity metrics
 │
-├── outputs/                   # Generated results
-│   ├── rnn_samples.txt
-│   ├── blstm_samples.txt
-│   └── attention_samples.txt
+└── Output.txt                 # Generated results
+
 ```
 
 ## Models Implemented
