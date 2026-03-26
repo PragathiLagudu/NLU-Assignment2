@@ -27,7 +27,7 @@ This project focuses on learning **word embeddings** using Word2Vec models train
 Problem 1/
 │
 ├── data/
-│   ├── raw/                  # Raw text files (PDF extracted / manual text)
+│   ├── raw/                  # Raw text files (PDF extracted )
 │   └── corpus.txt            # Preprocessed corpus
 │
 ├── utils/
@@ -40,7 +40,7 @@ Problem 1/
 │
 ├── analysis/
 │   ├── evaluate.py           # Nearest neighbors & analogy
-│   ├── visualize.py          # PCA / t-SNE plots
+│   ├── visualize.py          #  t-SNE plots
 │   └── wordcloud_plot.py     # Word cloud generation
 │
 ├── main.py
@@ -227,18 +227,23 @@ python main.py
 ```
 ---
 ## Results
+```
 Model  	           Novelty	  Diversity
 Vanilla RNN	        0.915	     0.92
 BLSTM	              1.0       	1.0
 Attention RNN      	0.905	     0.70
+```
+
 ## Sample Outputs
 RNN: aarita, manda, sarina
 BLSTM: zo, es
 Attention: aarati, shruti, manita
+
 ## Key Insights
 Attention RNN produced the most realistic names
 Vanilla RNN had highest diversity but some noise
 BLSTM struggled with generation due to bidirectional dependency
+
 ## Technologies Used
 Python
 PyTorch
