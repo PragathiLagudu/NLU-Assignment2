@@ -230,14 +230,16 @@ python main.py
 ```
 Model  	           Novelty	  Diversity
 Vanilla RNN	        0.915	     0.92
-BLSTM	              1.0       	1.0
+BLSTM	             1.0       	1.0
 Attention RNN      	0.905	     0.70
 ```
 
 ## Sample Outputs
+```
 RNN: aarita, manda, sarina
 BLSTM: zo, es
 Attention: aarati, shruti, manita
+```
 
 ## Key Insights
 Attention RNN produced the most realistic names
