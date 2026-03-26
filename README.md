@@ -54,7 +54,7 @@ Problem 2/
 
 ### Sources Used
 
-* Academic regulation documents (mandatory)
+* Academic regulation documents 
 * Course syllabus
 * Research and academic content
 
@@ -120,8 +120,6 @@ Results showed **partial semantic correctness**, limited by dataset size and wor
 ##  Visualization
 
 Word embeddings were visualized using:
-
-* **PCA**
 * **t-SNE**
 
 ### Observations
@@ -199,8 +197,26 @@ This project implements and compares three sequence models for generating Indian
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 ```bash
 python main.py
 ```
+---
+## Results
+Model  	           Novelty	  Diversity
+Vanilla RNN	        0.915	     0.92
+BLSTM	              1.0       	1.0
+Attention RNN      	0.905	     0.70
+## Sample Outputs
+RNN: aarita, manda, sarina
+BLSTM: zo, es
+Attention: aarati, shruti, manita
+## Key Insights
+Attention RNN produced the most realistic names
+Vanilla RNN had highest diversity but some noise
+BLSTM struggled with generation due to bidirectional dependency
+## Technologies Used
+Python
+PyTorch
+NumPy
