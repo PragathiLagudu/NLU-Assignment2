@@ -1,4 +1,5 @@
 # NLU-Assignment 2
+## Name: Lagudu Sai Pragathi Roll No: B23CM1021
 # Problem 1
 # Word2Vec on IIT Jodhpur Data 
 
@@ -32,8 +33,8 @@ Problem 1/
 │
 ├── utils/
 │   ├── preprocess.py         # Text cleaning & corpus creation
-│   ├── dataset.py            # Dataset & training pair generation
-│   └── pdf_extractor.py      # Extract text from PDFs
+│   └── dataset.py            # Dataset & training pair generation
+│   
 │
 ├── models/
 │   └── word2vec.py           # CBOW & Skip-gram (Negative Sampling)
@@ -198,7 +199,7 @@ Problem 2/
 │   ├── train.py               # Training loop
 │   └── evaluate.py            # Novelty & diversity metrics
 │
-├── outputs/ (optional)        # Generated results
+├── outputs/                   # Generated results
 │   ├── rnn_samples.txt
 │   ├── blstm_samples.txt
 │   └── attention_samples.txt
