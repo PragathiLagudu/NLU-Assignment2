@@ -94,7 +94,11 @@ Two models were implemented **from scratch**:
 * Epochs: 5
 
 ---
+##  Word Cloud
 
+The word cloud below shows the most frequent words in the corpus:
+
+![Word Cloud](Problem 1/Output/wc.png)
 ##  Semantic Analysis
 
 ### Nearest Neighbors
