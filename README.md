@@ -1,5 +1,6 @@
 # NLU-Assignment 2
-# Word2Vec on IIT Jodhpur Data (Problem 1)
+# Problem 1
+# Word2Vec on IIT Jodhpur Data 
 
 ## Overview
 
@@ -23,7 +24,7 @@ This project focuses on learning **word embeddings** using Word2Vec models train
 ## 📁 Project Structure
 
 ```
-word2vec_iitj/
+Problem 2/
 │
 ├── data/
 │   ├── raw/                  # Raw text files (PDF extracted / manual text)
@@ -42,7 +43,8 @@ word2vec_iitj/
 │   ├── visualize.py          # PCA / t-SNE plots
 │   └── wordcloud_plot.py     # Word cloud generation
 │
-├── main.py                   # End-to-end pipeline
+├── main.py
+├──requirements.txt                # End-to-end pipeline
 └── README.md
 ```
 
@@ -94,11 +96,6 @@ Two models were implemented **from scratch**:
 * Epochs: 5
 
 ---
-##  Word Cloud
-
-The word cloud below shows the most frequent words in the corpus:
-
-![Word Cloud](NLU-Assignment2/Problem 1/Output/wc.png)
 ##  Semantic Analysis
 
 ### Nearest Neighbors
@@ -168,4 +165,42 @@ python main.py
 > The effectiveness of word embeddings depends more on **data quality and co-occurrence patterns** than model implementation.
 
 ---
+# Problem 2
+# Character-Level Name Generation using RNN, BLSTM, and Attention
 
+## Overview
+This project implements and compares three sequence models for generating Indian names at the character level:
+- Vanilla RNN
+- Bidirectional LSTM (BLSTM)
+- Attention-based RNN
+
+---
+
+## Dataset
+- 1000 Indian names generated using LLM
+- Stored in `TrainingNames.txt`
+- Each name is processed character-by-character
+
+---
+
+## Models Implemented
+
+###  Vanilla RNN
+- 2-layer RNN with embedding and dropout
+- Produces diverse outputs
+
+###  BLSTM
+- Bidirectional LSTM (manual implementation)
+- Captures forward and backward context
+
+###  Attention RNN
+- RNN with dot-product attention
+- Focuses on important character patterns
+
+---
+
+## 🚀 How to Run
+
+```bash
+python main.py
+```
