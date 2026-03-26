@@ -24,7 +24,7 @@ This project focuses on learning **word embeddings** using Word2Vec models train
 ## 📁 Project Structure
 
 ```
-Problem 2/
+Problem 1/
 │
 ├── data/
 │   ├── raw/                  # Raw text files (PDF extracted / manual text)
@@ -180,6 +180,29 @@ This project implements and compares three sequence models for generating Indian
 - Each name is processed character-by-character
 
 ---
+## Project Struture
+```
+Problem 2/
+│
+├── main.py                     # Runs all models (train + generate + evaluate)
+├── TrainingNames.txt          # Dataset (1000 Indian names)
+├── README.md                  # Project documentation
+│
+├── models/                    # All model implementations
+│   ├── rnn.py                 # Vanilla RNN (with generate function)
+│   ├── blstm.py               # BLSTM (manual implementation + generate)
+│   └── attention_rnn.py       # Attention RNN (with generate)
+│
+├── utils/                     # Utility functions
+│   ├── dataset.py             # Data loading, encoding, vocabulary
+│   ├── train.py               # Training loop
+│   └── evaluate.py            # Novelty & diversity metrics
+│
+├── outputs/ (optional)        # Generated results
+│   ├── rnn_samples.txt
+│   ├── blstm_samples.txt
+│   └── attention_samples.txt
+```
 
 ## Models Implemented
 
