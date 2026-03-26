@@ -98,7 +98,7 @@ Two models were implemented **from scratch**:
 
 The word cloud below shows the most frequent words in the corpus:
 
-![Word Cloud](Problem 1/Output/wc.png)
+![Word Cloud](NLU-Assignment2/Problem 1/Output/wc.png)
 ##  Semantic Analysis
 
 ### Nearest Neighbors
